@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">StardApp</string>
+    <string name="usernameText">Username</string>
+    <string name="genderText">Gender</string>
+    <string name="birthdayText">Birthday</string>
+    <string name="animalText">Animals</string>
+    <string name="cropText">Crops</string>
+    <string name="fishText">Fishes</string>
+
+    <string name="animalListEmpty">You own no animals</string>
+    <string name="cropListEmpty">You own no crop</string>
+    <string name="fishLisEmpty">You own no fishes</string>
+    <string name="purchaseButton">Purchase</string>
+    <string name="logOutButton">Log Out</string>
 </resources>
