@@ -26,11 +26,11 @@ public class ObjectActivity extends AppCompatActivity {
         tl = findViewById(R.id.tableLayout);
         tl.removeAllViews();
 
-        String uwu = getIntent().getExtras().getString("user");
-        String uwu2 = getIntent().getExtras().getString("type");
+        String name = getIntent().getExtras().getString("user");
+        Integer type = getIntent().getExtras().getInt("type");
 
         dao = new DAO(ObjectActivity.this);
-        objects = dao.readObjects(uwu);
+        objects = dao.readObjects(name, type);
 
         for(Object obj : objects){
             View inf = LayoutInflater.from(this).inflate(R.layout.row_table,null,false);

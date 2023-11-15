@@ -2,6 +2,7 @@ package com.example.stardapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -20,10 +21,11 @@ public class ProfileActivity extends AppCompatActivity {
     private ListView animalListView, cropListView, fishListView;
     private EditText usernameEditText;
     private SQLiteDatabase db;
+    private static Intent intent1, intent2, intent3;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
@@ -50,7 +52,10 @@ public class ProfileActivity extends AppCompatActivity {
         purchaseAnimalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                intent1 = new Intent(ProfileActivity.this, ObjectActivity.class);
+                intent1.putExtra((String) usernameTextView.getText(),"user");
+                intent1.putExtra( "0","type");
+                startActivity(intent1);
             }
         });
 
@@ -61,7 +66,10 @@ public class ProfileActivity extends AppCompatActivity {
         purchaseCropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                intent2 = new Intent(ProfileActivity.this, ObjectActivity.class);
+                intent2.putExtra((String) usernameTextView.getText(),"user");
+                intent2.putExtra( "1","type");
+                startActivity(intent2);
             }
         });
 
@@ -72,7 +80,10 @@ public class ProfileActivity extends AppCompatActivity {
         purchaseFishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                intent3 = new Intent(ProfileActivity.this, ObjectActivity.class);
+                intent3.putExtra((String) usernameTextView.getText(),"user");
+                intent3.putExtra( "2","type");
+                startActivity(intent3);
             }
         });
 
