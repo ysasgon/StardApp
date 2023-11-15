@@ -1,17 +1,18 @@
 package com.example.stardapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.stardapp.dao.DAO;
 
 public class ProfileActivity extends AppCompatActivity {
     private static final Integer PURCHASE_ANIMAL=1;
@@ -58,7 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
                 Intent intentAnimalPurchase = new Intent(ProfileActivity.this, ObjectActivity.class);
                 intentAnimalPurchase.putExtra((String) usernameTextView.getText(),"user");
                 intentAnimalPurchase.putExtra( "0","type");
-                startActivity(intent1);
+                startActivity(intentAnimalPurchase);
             }
         });
 
@@ -72,7 +73,7 @@ public class ProfileActivity extends AppCompatActivity {
                 Intent intentCropPurchase = new Intent(ProfileActivity.this, ObjectActivity.class);
                 intentCropPurchase.putExtra((String) usernameTextView.getText(),"user");
                 intentCropPurchase.putExtra( "1","type");
-                startActivity(intent2);
+                startActivity(intentCropPurchase);
             }
         });
 
@@ -95,5 +96,15 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void fillLists() {
         
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+
+        }else{
+
+        }
     }
 }

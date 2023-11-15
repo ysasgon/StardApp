@@ -1,4 +1,4 @@
-package com.example.stardapp;
+package com.example.stardapp.model;
 
 import java.util.Date;
 

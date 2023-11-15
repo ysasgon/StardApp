@@ -1,4 +1,4 @@
-package com.example.stardapp;
+package com.example.stardapp.model;
 
 public class Object {
     private String name;

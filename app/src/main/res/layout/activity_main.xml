@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/si_imageView"
         android:layout_width="376dp"
         android:layout_height="96dp"
         android:layout_marginStart="18dp"
@@ -19,7 +19,7 @@
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/userLabel"
+        android:id="@+id/si_userLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -28,10 +28,10 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/si_imageView" />
 
     <TextView
-        android:id="@+id/passwordLabel"
+        android:id="@+id/si_passwordLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -42,10 +42,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userTextField" />
+        app:layout_constraintTop_toBottomOf="@+id/si_userTextField" />
 
     <EditText
-        android:id="@+id/passwordTextField"
+        android:id="@+id/si_passwordTextField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -55,33 +55,32 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/si_passwordLabel" />
 
     <EditText
-        android:id="@+id/userTextField"
+        android:id="@+id/si_userTextField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="184dp"
         android:ems="10"
-        android:text="@string/sign_in_username_textfield"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/si_userLabel" />
 
     <TextView
-        android:id="@+id/signUpLabel"
+        android:id="@+id/si_signUpLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="35dp"
         android:text="@string/sign_up_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTextField" />
+        app:layout_constraintTop_toBottomOf="@+id/si_passwordTextField" />
 
     <TextView
-        android:id="@+id/signUpHyperlink"
+        android:id="@+id/si_signUpHyperlink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
@@ -89,11 +88,11 @@
         android:layout_marginEnd="154dp"
         android:text="@string/sign_up_link"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/signUpLabel"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTextField" />
+        app:layout_constraintStart_toEndOf="@+id/si_signUpLabel"
+        app:layout_constraintTop_toBottomOf="@+id/si_passwordTextField" />
 
     <Button
-        android:id="@+id/signInButton"
+        android:id="@+id/si_signInButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="18dp"
