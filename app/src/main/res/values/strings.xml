@@ -1,15 +1,39 @@
 <resources>
+    <!--COMMON STRINGS-->
     <string name="app_name">StardApp</string>
+    <string name="sign_in_button">Sign In</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="cancel_button">Cancel</string>
+
+    <!--SIGN IN STRINGS-->
+    <string name="sign_in_username_label">User</string>
+    <string name="sign_in_username_textfield">User</string>
+    <string name="sign_in_passwd_label">Password</string>
+    <string name="sign_up_label">Don\'t have an account?</string>
+    <string name="sign_up_link">Register now!</string>
+
+    <!--SIGN UP STRINGS-->
+    <string name="sign_up_username_label">Username</string>
+    <string name="sign_up_username_textfield">Username</string>
+    <string name="sign_up_passwd_label">Password</string>
+    <string name="sign_up_conf_passwd_label">Rep. Password</string>
+    <string name="sign_up_male">Male</string>
+    <string name="sign_up_female">Female</string>
+    <string name="sign_up_date">Date</string>
+
+    <!--PROFILE STRINGS-->
     <string name="usernameText">Username</string>
     <string name="genderText">Gender</string>
     <string name="birthdayText">Birthday</string>
     <string name="animalText">Animals</string>
     <string name="cropText">Crops</string>
     <string name="fishText">Fishes</string>
-
     <string name="animalListEmpty">You own no animals</string>
     <string name="cropListEmpty">You own no crop</string>
     <string name="fishLisEmpty">You own no fishes</string>
     <string name="purchaseButton">Purchase</string>
     <string name="logOutButton">Log Out</string>
+
+    <!--OBJECTS STRINGS-->
+
 </resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StardApp</string>
+    <string name="sign_up_username_label">Usuario</string>
+    <string name="sign_up_username_textfield">Usuario</string>
+    <string name="sign_up_passwd_label">Contraseña</string>
+    <string name="sign_up_conf_passwd_label">Rep. Contraseña</string>
+    <string name="sign_up_male">Hombre</string>
+    <string name="sign_up_female">Mujer</string>
+    <string name="sign_up_date">Fecha</string>
+    <string name="cancel_button">Cancelar</string>
+    <string name="sign_up_button">Iniciar Sesión</string>
+    <string name="sign_in_button">Registrarse</string>
+    <string name="sign_in_username_label">Usuario</string>
+    <string name="sign_in_username_textfield">Usuario</string>
+    <string name="sign_in_passwd_label">Contraseña</string>
+    <string name="sign_up_label">No tienes una cuenta?</string>
+    <string name="sign_up_link">Registrate ahora!</string>
+</resources>
