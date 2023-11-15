@@ -14,34 +14,37 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
-    private TextView usernameTextView, genderTextView, birthdayTextView, animalTextView, cropTextView, fishTextView;
+    private static final Integer PURCHASE_ANIMAL=1;
+    private static final Integer PURCHASE_CROP=2;
+    private static final Integer PURCHASE_FISH=3;
+
+    private TextView usernameTextView, genderTextView, birthdayTextView, animalTextView, cropTextView, fishTextView, usernameText, genderText, birthdayText;
     private ImageView profileIcon, animalImageView, cropImageView, fishImageView;
     private Button logOutButton, purchaseAnimalButton, purchaseCropButton, purchaseFishButton;
-    private Spinner genderSpinner, birthdayYearSpinner, birthdayMonthSpinner, birthdayDaySpinner;
     private ListView animalListView, cropListView, fishListView;
+    private DAO db;
     private EditText usernameEditText;
-    private SQLiteDatabase db;
-    private static Intent intent1, intent2, intent3;
 
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Bundle bundleProfile=getIntent().getExtras();
 
         usernameTextView = (TextView) findViewById(R.id.usernameTextView);
-        usernameEditText = (EditText) findViewById(R.id.usernameEditText);
+        usernameText = (TextView) findViewById(R.id.usernameText);
         genderTextView = (TextView) findViewById(R.id.genderTextView);
-        genderSpinner = (Spinner) findViewById(R.id.genderSpinner);
+        genderText = (TextView) findViewById(R.id.genderText);
         birthdayTextView = (TextView) findViewById(R.id.birthdayTextView);
-        birthdayDaySpinner = (Spinner) findViewById(R.id.birthdayDaySpinner);
-        birthdayMonthSpinner = (Spinner) findViewById(R.id.birthdayMonthSpinner);
-        birthdayYearSpinner = (Spinner) findViewById(R.id.birthdayYearSpinner);
+        birthdayText = (TextView) findViewById(R.id.birthdayText);
         logOutButton = (Button) findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intentSignIn = new Intent();
+                setResult(RESULT_OK,intentSignIn);
+                finish();
             }
         });
 
@@ -52,9 +55,9 @@ public class ProfileActivity extends AppCompatActivity {
         purchaseAnimalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent1 = new Intent(ProfileActivity.this, ObjectActivity.class);
-                intent1.putExtra((String) usernameTextView.getText(),"user");
-                intent1.putExtra( "0","type");
+                Intent intentAnimalPurchase = new Intent(ProfileActivity.this, ObjectActivity.class);
+                intentAnimalPurchase.putExtra((String) usernameTextView.getText(),"user");
+                intentAnimalPurchase.putExtra( "0","type");
                 startActivity(intent1);
             }
         });
@@ -66,9 +69,9 @@ public class ProfileActivity extends AppCompatActivity {
         purchaseCropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent2 = new Intent(ProfileActivity.this, ObjectActivity.class);
-                intent2.putExtra((String) usernameTextView.getText(),"user");
-                intent2.putExtra( "1","type");
+                Intent intentCropPurchase = new Intent(ProfileActivity.this, ObjectActivity.class);
+                intentCropPurchase.putExtra((String) usernameTextView.getText(),"user");
+                intentCropPurchase.putExtra( "1","type");
                 startActivity(intent2);
             }
         });
@@ -80,10 +83,10 @@ public class ProfileActivity extends AppCompatActivity {
         purchaseFishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent3 = new Intent(ProfileActivity.this, ObjectActivity.class);
-                intent3.putExtra((String) usernameTextView.getText(),"user");
-                intent3.putExtra( "2","type");
-                startActivity(intent3);
+                Intent intentFishPurchase = new Intent(ProfileActivity.this, ObjectActivity.class);
+                intentFishPurchase.putExtra((String) usernameTextView.getText(),"user");
+                intentFishPurchase.putExtra( "2","type");
+                startActivity(intentFishPurchase);
             }
         });
 
@@ -91,5 +94,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void fillLists() {
+        
     }
 }
