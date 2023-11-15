@@ -22,12 +22,12 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView profileIcon, animalImageView, cropImageView, fishImageView;
     private Button logOutButton, purchaseAnimalButton, purchaseCropButton, purchaseFishButton;
     private ListView animalListView, cropListView, fishListView;
-
     private DAO db;
+    private EditText usernameEditText;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Bundle bundleProfile=getIntent().getExtras();
@@ -55,8 +55,10 @@ public class ProfileActivity extends AppCompatActivity {
         purchaseAnimalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentAnimalPurchase = new Intent();
-                
+                Intent intentAnimalPurchase = new Intent(ProfileActivity.this, ObjectActivity.class);
+                intentAnimalPurchase.putExtra((String) usernameTextView.getText(),"user");
+                intentAnimalPurchase.putExtra( "0","type");
+                startActivity(intent1);
             }
         });
 
@@ -67,7 +69,10 @@ public class ProfileActivity extends AppCompatActivity {
         purchaseCropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCropPurchase = new Intent();
+                Intent intentCropPurchase = new Intent(ProfileActivity.this, ObjectActivity.class);
+                intentCropPurchase.putExtra((String) usernameTextView.getText(),"user");
+                intentCropPurchase.putExtra( "1","type");
+                startActivity(intent2);
             }
         });
 
@@ -78,7 +83,10 @@ public class ProfileActivity extends AppCompatActivity {
         purchaseFishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentFishPurchase = new Intent();
+                Intent intentFishPurchase = new Intent(ProfileActivity.this, ObjectActivity.class);
+                intentFishPurchase.putExtra((String) usernameTextView.getText(),"user");
+                intentFishPurchase.putExtra( "2","type");
+                startActivity(intentFishPurchase);
             }
         });
 

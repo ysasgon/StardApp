@@ -63,9 +63,9 @@ public class DAO extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Set<Object> readObjects(String user){
+    public Set<Object> readObjects(String user, Integer type){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursorCourses = db.rawQuery("SELECT * FROM " + TABLE_OBJECT + " WHERE", new String[] {user});
+        Cursor cursorCourses = db.rawQuery("SELECT * FROM " + TABLE_OBJECT + " WHERE "+NAME_COL_OBJECTS+" = ? AND "+TYPE_COL_OBJECTS+" = ?", new String[] {user, type.toString()});
         HashSet<Object> objects = new HashSet<>();
 
         if (cursorCourses.moveToFirst()) {
@@ -80,6 +80,7 @@ public class DAO extends SQLiteOpenHelper {
         cursorCourses.close();
         return objects;
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
