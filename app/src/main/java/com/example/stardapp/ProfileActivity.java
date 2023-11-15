@@ -2,6 +2,7 @@ package com.example.stardapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -13,33 +14,37 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
-    private TextView usernameTextView, genderTextView, birthdayTextView, animalTextView, cropTextView, fishTextView;
+    private static final Integer PURCHASE_ANIMAL=1;
+    private static final Integer PURCHASE_CROP=2;
+    private static final Integer PURCHASE_FISH=3;
+
+    private TextView usernameTextView, genderTextView, birthdayTextView, animalTextView, cropTextView, fishTextView, usernameText, genderText, birthdayText;
     private ImageView profileIcon, animalImageView, cropImageView, fishImageView;
     private Button logOutButton, purchaseAnimalButton, purchaseCropButton, purchaseFishButton;
-    private Spinner genderSpinner, birthdayYearSpinner, birthdayMonthSpinner, birthdayDaySpinner;
     private ListView animalListView, cropListView, fishListView;
-    private EditText usernameEditText;
-    private SQLiteDatabase db;
+
+    private DAO db;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Bundle bundleProfile=getIntent().getExtras();
 
         usernameTextView = (TextView) findViewById(R.id.usernameTextView);
-        usernameEditText = (EditText) findViewById(R.id.usernameEditText);
+        usernameText = (TextView) findViewById(R.id.usernameText);
         genderTextView = (TextView) findViewById(R.id.genderTextView);
-        genderSpinner = (Spinner) findViewById(R.id.genderSpinner);
+        genderText = (TextView) findViewById(R.id.genderText);
         birthdayTextView = (TextView) findViewById(R.id.birthdayTextView);
-        birthdayDaySpinner = (Spinner) findViewById(R.id.birthdayDaySpinner);
-        birthdayMonthSpinner = (Spinner) findViewById(R.id.birthdayMonthSpinner);
-        birthdayYearSpinner = (Spinner) findViewById(R.id.birthdayYearSpinner);
+        birthdayText = (TextView) findViewById(R.id.birthdayText);
         logOutButton = (Button) findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intentSignIn = new Intent();
+                setResult(RESULT_OK,intentSignIn);
+                finish();
             }
         });
 
@@ -50,7 +55,8 @@ public class ProfileActivity extends AppCompatActivity {
         purchaseAnimalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intentAnimalPurchase = new Intent();
+                
             }
         });
 
@@ -61,7 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
         purchaseCropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intentCropPurchase = new Intent();
             }
         });
 
@@ -72,7 +78,7 @@ public class ProfileActivity extends AppCompatActivity {
         purchaseFishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intentFishPurchase = new Intent();
             }
         });
 
@@ -80,5 +86,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void fillLists() {
+        
     }
 }

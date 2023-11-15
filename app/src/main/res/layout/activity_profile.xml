@@ -66,8 +66,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.176" />
 
-    <Spinner
-        android:id="@+id/genderSpinner"
+    <TextView
+        android:id="@+id/genderText"
         android:layout_width="153dp"
         android:layout_height="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -77,45 +77,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.074" />
 
-    <Spinner
-        android:id="@+id/birthdayYearSpinner"
-        android:layout_width="59dp"
+    <TextView
+        android:id="@+id/birthdayText"
+        android:layout_width="153dp"
         android:layout_height="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintHorizontal_bias="0.937"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.126" />
 
-    <Spinner
-        android:id="@+id/birthdayMonthSpinner"
-        android:layout_width="41dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.78"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.126" />
-
-    <Spinner
-        android:id="@+id/birthdayDaySpinner"
-        android:layout_width="41dp"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.654"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.126" />
-
-    <EditText
-        android:id="@+id/usernameEditText"
+    <TextView
+        android:id="@+id/usernameText"
         android:layout_width="153dp"
         android:layout_height="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.937"
         app:layout_constraintLeft_toLeftOf="parent"
