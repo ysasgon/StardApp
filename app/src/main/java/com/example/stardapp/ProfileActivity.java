@@ -112,10 +112,7 @@ public class ProfileActivity extends AppCompatActivity {
             usernameText.setText(user.getName());
             genderText.setText(user.getGender());
             birthdayText.setText(user.getBirth_date().toString());
-            //metodo que llama al DAO y recoge todos los objetos que posee el usuario, si no posee
-            // el tipo de objeto de la lista, se introduce en la lista una fila con el mensaje
-            // correspondiente(si no tiene animals, se mete un String con
-            //
+
             ArrayList<String> listAnimals = new ArrayList();
             ArrayAdapter<String> adapterA = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1, listAnimals);
             animalListView.setAdapter(adapterA);
@@ -146,17 +143,16 @@ public class ProfileActivity extends AppCompatActivity {
                 adapterC.notifyDataSetChanged();
             }
 
-
             ArrayList<String> listFishes = new ArrayList();
             ArrayAdapter<String> adapterF = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1, listFishes);
             fishListView.setAdapter(adapterF);
 
             Set<Object> fishes = dao.readObjects(usernameText.getText().toString(), 3);
             if (animals!=null) {
-            for (Object obj : fishes) {
-                listFishes.add(obj.getName()+"-"+obj.getQuantity());
-                adapterF.notifyDataSetChanged();
-            }
+                for (Object obj : fishes) {
+                    listFishes.add(obj.getName()+"-"+obj.getQuantity());
+                    adapterF.notifyDataSetChanged();
+                }
             }else{
                 listFishes.add(getString(R.string.fishLisEmpty));
                 adapterF.notifyDataSetChanged();

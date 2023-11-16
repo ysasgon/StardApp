@@ -16,6 +16,7 @@ import java.util.Set;
 
 public class ObjectActivity extends AppCompatActivity {
 
+    private TextView txt;
     private TableLayout tl;
     private Set<Object> objects;
     private DAO dao;
@@ -28,11 +29,19 @@ public class ObjectActivity extends AppCompatActivity {
         tl = (TableLayout) findViewById(R.id.tableLayout);
         tl.removeAllViews();
 
+        txt = findViewById(R.id.textViewType);
+
         Intent origin = getIntent();
 
         String name = origin.getStringExtra("USER_NAME");
         Integer type = origin.getIntExtra("TYPE",0);
-
+        if(type==1){
+            txt.setText(getString(R.string.type_animal));
+        }else if(type==2){
+            txt.setText(getString(R.string.type_crop));
+        }else{
+            txt.setText(getString(R.string.type_fish));
+        }
         dao = new DAO(ObjectActivity.this);
         objects = dao.readObjects(name, type);
         if(objects!=null){
@@ -43,8 +52,8 @@ public class ObjectActivity extends AppCompatActivity {
                 TextView tb2 = inf.findViewById(R.id.tb2);
 
                 tb0.setText(obj.getName());
-                tb1.setText(obj.getType());
-                tb2.setText(obj.getQuantity());
+                tb1.setText(obj.getType().toString());
+                tb2.setText(obj.getQuantity().toString());
 
                 tl.addView(inf);
             }

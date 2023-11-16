@@ -46,5 +46,7 @@
     <string name="logOutButton">Log Out</string>
 
     <!--OBJECTS STRINGS-->
-
+    <string name="type_animal">Animals:</string>
+    <string name="type_crop">Crops:</string>
+    <string name="type_fish">Fishes:</string>
 </resources>
