@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.stardapp.dao.DAO;
 import com.example.stardapp.model.Object;
@@ -105,6 +106,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         getFieldValues((User) origin.getSerializableExtra("USER"));
+        //TODO crear metodo en DAO para recoger los objetos que tenga el user y que la cantidad sea mayor a 0
     }
 
     private void getFieldValues(User user) {
@@ -117,11 +119,17 @@ public class ProfileActivity extends AppCompatActivity {
             ArrayAdapter<String> adapterA = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1, listAnimals);
             animalListView.setAdapter(adapterA);
 
+            //Comprobar en cada lista si el Set que recibe no este vacio. Si lo esta, se añade
+            // a la tabla una row con el R.string que necesite
+            // (Ejemplo: si es en animals, se introduciria el R.string.animalListEmpty).
+
             Set<Object> animals = dao.readObjects(usernameText.getText().toString(), 1);
             if (animals!=null){
                 for (Object obj : animals) {
-                    listAnimals.add(obj.getName()+"-"+obj.getQuantity());
-                    adapterA.notifyDataSetChanged();
+                    if(obj.getQuantity()>0){
+                        listAnimals.add(obj.getName()+"-"+obj.getQuantity());
+                        adapterA.notifyDataSetChanged();
+                    }
                 }
             }else{
                 listAnimals.add(getString(R.string.animalListEmpty));
@@ -133,10 +141,12 @@ public class ProfileActivity extends AppCompatActivity {
             cropListView.setAdapter(adapterC);
 
             Set<Object> crops = dao.readObjects(usernameText.getText().toString(), 2);
-            if (animals!=null) {
+            if (crops!=null) {
                 for (Object obj : crops) {
-                    listCrops.add(obj.getName() + "-" + obj.getQuantity());
-                    adapterC.notifyDataSetChanged();
+                    if(obj.getQuantity()>0){
+                        listCrops.add(obj.getName() + "-" + obj.getQuantity());
+                        adapterC.notifyDataSetChanged();
+                    }
                 }
             }else{
                 listCrops.add(getString(R.string.cropListEmpty));
@@ -148,27 +158,29 @@ public class ProfileActivity extends AppCompatActivity {
             fishListView.setAdapter(adapterF);
 
             Set<Object> fishes = dao.readObjects(usernameText.getText().toString(), 3);
-            if (animals!=null) {
+            if (fishes!=null) {
                 for (Object obj : fishes) {
-                    listFishes.add(obj.getName()+"-"+obj.getQuantity());
-                    adapterF.notifyDataSetChanged();
+                    if(obj.getQuantity()>0){
+                        listFishes.add(obj.getName()+"-"+obj.getQuantity());
+                        adapterF.notifyDataSetChanged();
+                    }
                 }
             }else{
                 listFishes.add(getString(R.string.fishLisEmpty));
                 adapterF.notifyDataSetChanged();
             }
-
-
         }
     }
+
+    //TODO Si el resultcode es ERROR, se mostrara un Toast avisando de un error. La info se actualizara si el resultcode recibido es OK
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==RESULT_OK){
-
+            //getFieldValues(user);
         }else{
-
+            Toast.makeText(ProfileActivity.this, getString(R.string.purchaseCanceled), Toast.LENGTH_LONG);
         }
     }
 }
