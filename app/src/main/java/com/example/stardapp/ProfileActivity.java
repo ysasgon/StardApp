@@ -4,12 +4,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -65,6 +65,14 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         animalTextView = (TextView) findViewById(R.id.animalTextView);
+        animalTextView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent webAnimal = new Intent(Intent.ACTION_VIEW, Uri.parse("https://stardewvalleywiki.com/Animals"));
+                startActivity(webAnimal);
+            }
+        });
         animalListView = (ListView) findViewById(R.id.animalListView);
         animalImageView = (ImageView) findViewById(R.id.animalImageView);
         purchaseAnimalButton = (Button) findViewById(R.id.purchaseAnimalButton);
@@ -79,6 +87,14 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         cropTextView = (TextView) findViewById(R.id.cropTextView);
+        cropTextView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent webCrop = new Intent(Intent.ACTION_VIEW, Uri.parse("https://stardewvalleywiki.com/Crops"));
+                startActivity(webCrop);
+            }
+        });
         cropListView = (ListView) findViewById(R.id.cropListView);
         cropImageView = (ImageView) findViewById(R.id.cropImageView);
         purchaseCropButton = (Button) findViewById(R.id.purchaseCropButton);
@@ -93,6 +109,14 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         fishTextView = (TextView) findViewById(R.id.fishTextView);
+        fishTextView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent webFish = new Intent(Intent.ACTION_VIEW, Uri.parse("https://stardewvalleywiki.com/Fish"));
+                startActivity(webFish);
+            }
+        });
         fishListView = (ListView) findViewById(R.id.fishListView);
         fishImageView = (ImageView) findViewById(R.id.fishImageView);
         purchaseFishButton = (Button) findViewById(R.id.purchaseFishButton);
