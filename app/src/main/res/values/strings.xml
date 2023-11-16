@@ -44,6 +44,7 @@
     <string name="fishLisEmpty">You own no fishes</string>
     <string name="purchaseButton">Purchase</string>
     <string name="logOutButton">Log Out</string>
+    <string name="purchaseCanceled">Something went wrong with the purchase.</string>
 
     <!--OBJECTS STRINGS-->
     <string name="type_animal">Animals:</string>
