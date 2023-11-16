@@ -148,6 +148,16 @@ public class DAO extends SQLiteOpenHelper {
         db.close();
 
     }
+    public void updateObj(String userName, String objectName, String type, String quantity){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valuesObj = new ContentValues();
+
+        valuesObj.put(QUANTITY_COL_OBJECTS, quantity);
+
+        db.update(TABLE_OBJECT, valuesObj, NAME_COL_OBJECTS+ " =? AND " + TYPE_COL_OBJECTS + " =? AND " + USER_COL_OBJECTS + " =?", new String[]{objectName,type,userName});
+        db.close();
+
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
