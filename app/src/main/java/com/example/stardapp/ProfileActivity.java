@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -114,15 +115,53 @@ public class ProfileActivity extends AppCompatActivity {
             //metodo que llama al DAO y recoge todos los objetos que posee el usuario, si no posee
             // el tipo de objeto de la lista, se introduce en la lista una fila con el mensaje
             // correspondiente(si no tiene animals, se mete un String con
-            // getString(R.string.animalListEmpty))
-            ArrayList<Object> list = new ArrayList();
+            //
+            ArrayList<String> listAnimals = new ArrayList();
+            ArrayAdapter<String> adapterA = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1, listAnimals);
+            animalListView.setAdapter(adapterA);
 
-            Set<Object> objects = dao.readObjects(usernameText.getText().toString(), 1);
-
-            int n = objects.size();
-            for (Object obj : objects) {
-                list.add(obj);
+            Set<Object> animals = dao.readObjects(usernameText.getText().toString(), 1);
+            if (animals!=null){
+                for (Object obj : animals) {
+                    listAnimals.add(obj.getName()+"-"+obj.getQuantity());
+                    adapterA.notifyDataSetChanged();
+                }
+            }else{
+                listAnimals.add(getString(R.string.animalListEmpty));
+                adapterA.notifyDataSetChanged();
             }
+
+            ArrayList<String> listCrops = new ArrayList();
+            ArrayAdapter<String> adapterC = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1, listCrops);
+            cropListView.setAdapter(adapterC);
+
+            Set<Object> crops = dao.readObjects(usernameText.getText().toString(), 2);
+            if (animals!=null) {
+                for (Object obj : crops) {
+                    listCrops.add(obj.getName() + "-" + obj.getQuantity());
+                    adapterC.notifyDataSetChanged();
+                }
+            }else{
+                listCrops.add(getString(R.string.cropListEmpty));
+                adapterC.notifyDataSetChanged();
+            }
+
+
+            ArrayList<String> listFishes = new ArrayList();
+            ArrayAdapter<String> adapterF = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1, listFishes);
+            fishListView.setAdapter(adapterF);
+
+            Set<Object> fishes = dao.readObjects(usernameText.getText().toString(), 3);
+            if (animals!=null) {
+            for (Object obj : fishes) {
+                listFishes.add(obj.getName()+"-"+obj.getQuantity());
+                adapterF.notifyDataSetChanged();
+            }
+            }else{
+                listFishes.add(getString(R.string.fishLisEmpty));
+                adapterF.notifyDataSetChanged();
+            }
+
 
         }
     }
