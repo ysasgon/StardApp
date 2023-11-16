@@ -50,4 +50,6 @@
     <string name="type_animal">Animals:</string>
     <string name="type_crop">Crops:</string>
     <string name="type_fish">Fishes:</string>
+    <string name="exit_button">Exit</string>
+    <string name="save_button">Save</string>
 </resources>
