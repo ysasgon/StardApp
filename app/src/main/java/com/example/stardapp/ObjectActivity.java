@@ -1,5 +1,6 @@
 package com.example.stardapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,35 +16,38 @@ import java.util.Set;
 
 public class ObjectActivity extends AppCompatActivity {
 
-    private TableLayout tl = null;
-    private Set<Object> objects = null;
+    private TableLayout tl;
+    private Set<Object> objects;
     private DAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tl = findViewById(R.id.tableLayout);
+        setContentView(R.layout.object_activity);
+
+        tl = (TableLayout) findViewById(R.id.tableLayout);
         tl.removeAllViews();
 
-        String name = getIntent().getExtras().getString("user");
-        Integer type = getIntent().getExtras().getInt("type");
+        Intent origin = getIntent();
+
+        String name = origin.getStringExtra("USER_NAME");
+        Integer type = origin.getIntExtra("TYPE",0);
 
         dao = new DAO(ObjectActivity.this);
         objects = dao.readObjects(name, type);
+        if(objects!=null){
+            for(Object obj : objects){
+                View inf = LayoutInflater.from(this).inflate(R.layout.row_table,null,false);
+                TextView tb0 = inf.findViewById(R.id.tb0);
+                TextView tb1 = inf.findViewById(R.id.tb1);
+                TextView tb2 = inf.findViewById(R.id.tb2);
 
-        for(Object obj : objects){
-            View inf = LayoutInflater.from(this).inflate(R.layout.row_table,null,false);
-            TextView tb0 = inf.findViewById(R.id.tb0);
-            TextView tb1 = inf.findViewById(R.id.tb1);
-            TextView tb2 = inf.findViewById(R.id.tb2);
+                tb0.setText(obj.getName());
+                tb1.setText(obj.getType());
+                tb2.setText(obj.getQuantity());
 
-            tb0.setText(obj.getName());
-            tb1.setText(obj.getType());
-            tb2.setText(obj.getQuantity());
-
-            tl.addView(inf);
+                tl.addView(inf);
+            }
         }
-
-
     }
 }

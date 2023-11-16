@@ -46,8 +46,9 @@ public class MainActivity extends AppCompatActivity {
                     if(!userTextField.getText().toString().isEmpty()&&!passwordTextFile.getText().toString().isEmpty()){
                         User user = dao.signIn(userTextField.getText().toString(),passwordTextFile.getText().toString());
                         if(user!=null){
-                            Intent sign_up = new Intent(MainActivity.this, ProfileActivity.class);
-                            startActivityForResult(sign_up,PROFILE_ACTIVITY);
+                            Intent profile = new Intent(MainActivity.this, ProfileActivity.class);
+                            profile.putExtra( "USER", user);
+                            startActivityForResult(profile,PROFILE_ACTIVITY);
                         }else{
                             Toast.makeText(MainActivity.this, R.string.sign_in_wrong_auth, Toast.LENGTH_SHORT).show();
                         }

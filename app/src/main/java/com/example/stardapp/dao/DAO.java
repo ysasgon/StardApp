@@ -18,7 +18,7 @@ import java.util.Set;
 
 public class DAO extends SQLiteOpenHelper {
     private static final String DB_NAME = "stardapp_db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     private static final String TABLE_USER = "user";
     private static final String NAME_COL_USERS = "name";
@@ -38,16 +38,29 @@ public class DAO extends SQLiteOpenHelper {
 
     public void signUp(String name, String password, String gender, String birth_date) throws ParseException, UserAlreadyExistsException {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
+        ContentValues valuesUser = new ContentValues();
+
 
         try{
-            values.put(NAME_COL_USERS, name);
-            values.put(PASSWORD_COL_USERS, password);
-            values.put(GENDER_COL_USERS, gender);
-            values.put(BIRTH_DATE_COL_USERS, birth_date);
-
             if(!isUserRegistered(name)){
-                db.insert(TABLE_USER, null, values);
+                valuesUser.put(NAME_COL_USERS, name);
+                valuesUser.put(PASSWORD_COL_USERS, password);
+                valuesUser.put(GENDER_COL_USERS, gender);
+                valuesUser.put(BIRTH_DATE_COL_USERS, birth_date);
+
+                db.insert(TABLE_USER, null, valuesUser);
+
+                insertObj(name,"Animal 1", 1);
+                insertObj(name,"Animal 2",1);
+                insertObj(name,"Animal 3", 1);
+
+                insertObj(name,"Crop 1", 2);
+                insertObj(name,"Crop 2",2);
+                insertObj(name,"Crop 3", 2);
+
+                insertObj(name,"Fish 1", 3);
+                insertObj(name,"Fish 2",3);
+                insertObj(name,"Fish 3", 3);
             }else{
                 throw new UserAlreadyExistsException();
             }
@@ -104,7 +117,7 @@ public class DAO extends SQLiteOpenHelper {
 
     public Set<Object> readObjects(String user, Integer type){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_OBJECT + " WHERE "+NAME_COL_OBJECTS+" = ? AND "+TYPE_COL_OBJECTS+" = ?", new String[] {user, type.toString()});
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_OBJECT + " WHERE "+USER_COL_OBJECTS+" = ? AND "+TYPE_COL_OBJECTS+" = ?", new String[] {user, type.toString()});
         HashSet<Object> objects = new HashSet<>();
 
         if (cursor.moveToFirst()) {
@@ -115,9 +128,25 @@ public class DAO extends SQLiteOpenHelper {
                         cursor.getInt(1),
                         cursor.getInt(2)));
             } while (cursor.moveToNext());
+        }else{
+            return null;
         }
         cursor.close();
         return objects;
+    }
+
+    public void insertObj(String userName, String name, Integer type){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valuesObj = new ContentValues();
+
+        valuesObj.put(NAME_COL_OBJECTS, name);
+        valuesObj.put(TYPE_COL_OBJECTS, type);
+        valuesObj.put(QUANTITY_COL_OBJECTS, 0);
+        valuesObj.put(USER_COL_OBJECTS, userName);
+
+        db.insert(TABLE_OBJECT, null, valuesObj);
+        db.close();
+
     }
 
     @Override
@@ -137,10 +166,11 @@ public class DAO extends SQLiteOpenHelper {
         db.execSQL(query);
 
         query = "CREATE TABLE IF NOT EXISTS " + TABLE_OBJECT + " ("
-                + NAME_COL_OBJECTS + " VARCHAR PRIMARY KEY, "
+                + NAME_COL_OBJECTS + " VARCHAR, "
                 + TYPE_COL_OBJECTS + " INTEGER,"
                 + QUANTITY_COL_OBJECTS + " INTEGER,"
-                + USER_COL_OBJECTS + " VARCHAR)";
+                + USER_COL_OBJECTS + " VARCHAR," +
+                "PRIMARY KEY ("+NAME_COL_OBJECTS+","+USER_COL_OBJECTS+") )";
         db.execSQL(query);
     }
 }
