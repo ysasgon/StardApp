@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -34,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Button logOutButton, purchaseAnimalButton, purchaseCropButton, purchaseFishButton;
     private ListView animalListView, cropListView, fishListView;
     private DAO dao;
-    private EditText usernameEditText;
+    private Intent origin;
 
 
     @Override
@@ -42,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Bundle bundleProfile=getIntent().getExtras();
-        Intent origin = getIntent();
+        origin = getIntent();
 
         dao = new DAO(ProfileActivity.this);
 
@@ -106,30 +107,31 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         getFieldValues((User) origin.getSerializableExtra("USER"));
-        //TODO crear metodo en DAO para recoger los objetos que tenga el user y que la cantidad sea mayor a 0
     }
 
     private void getFieldValues(User user) {
         if(!user.equals(null)){
             usernameText.setText(user.getName());
             genderText.setText(user.getGender());
-            birthdayText.setText(user.getBirth_date().toString());
+            birthdayText.setText(DateFormat.format("dd/MM/yyyy", user.getBirth_date()).toString());
 
             ArrayList<String> listAnimals = new ArrayList();
             ArrayAdapter<String> adapterA = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1, listAnimals);
             animalListView.setAdapter(adapterA);
 
-            //Comprobar en cada lista si el Set que recibe no este vacio. Si lo esta, se añade
-            // a la tabla una row con el R.string que necesite
-            // (Ejemplo: si es en animals, se introduciria el R.string.animalListEmpty).
+
 
             Set<Object> animals = dao.readObjects(usernameText.getText().toString(), 1);
             if (animals!=null){
                 for (Object obj : animals) {
-                    if(obj.getQuantity()>0){
+                    if(obj.getQuantity()>0 && obj.getUsername().equalsIgnoreCase(user.getName())){
                         listAnimals.add(obj.getName()+"-"+obj.getQuantity());
                         adapterA.notifyDataSetChanged();
                     }
+                }
+                if(listAnimals.isEmpty()){
+                    listAnimals.add(getString(R.string.animalListEmpty));
+                    adapterA.notifyDataSetChanged();
                 }
             }else{
                 listAnimals.add(getString(R.string.animalListEmpty));
@@ -143,10 +145,15 @@ public class ProfileActivity extends AppCompatActivity {
             Set<Object> crops = dao.readObjects(usernameText.getText().toString(), 2);
             if (crops!=null) {
                 for (Object obj : crops) {
-                    if(obj.getQuantity()>0){
+                    if(obj.getQuantity()>0 && obj.getUsername().equalsIgnoreCase(user.getName())){
                         listCrops.add(obj.getName() + "-" + obj.getQuantity());
                         adapterC.notifyDataSetChanged();
                     }
+                }
+
+                if(listCrops.isEmpty()){
+                    listCrops.add(getString(R.string.cropListEmpty));
+                    adapterC.notifyDataSetChanged();
                 }
             }else{
                 listCrops.add(getString(R.string.cropListEmpty));
@@ -160,13 +167,17 @@ public class ProfileActivity extends AppCompatActivity {
             Set<Object> fishes = dao.readObjects(usernameText.getText().toString(), 3);
             if (fishes!=null) {
                 for (Object obj : fishes) {
-                    if(obj.getQuantity()>0){
+                    if(obj.getQuantity()>0 && obj.getUsername().equalsIgnoreCase(user.getName())){
                         listFishes.add(obj.getName()+"-"+obj.getQuantity());
                         adapterF.notifyDataSetChanged();
                     }
                 }
+                if(listFishes.isEmpty()){
+                    listFishes.add((String) getString(R.string.fishLisEmpty));
+                    adapterF.notifyDataSetChanged();
+                }
             }else{
-                listFishes.add(getString(R.string.fishLisEmpty));
+                listFishes.add((String) getString(R.string.fishLisEmpty));
                 adapterF.notifyDataSetChanged();
             }
         }
@@ -178,7 +189,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==RESULT_OK){
-            //getFieldValues(user);
+            getFieldValues((User) origin.getSerializableExtra("USER"));
         }else{
             Toast.makeText(ProfileActivity.this, getString(R.string.purchaseCanceled), Toast.LENGTH_LONG);
         }

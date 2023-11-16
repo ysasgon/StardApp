@@ -50,17 +50,35 @@ public class DAO extends SQLiteOpenHelper {
 
                 db.insert(TABLE_USER, null, valuesUser);
 
-                insertObj(name,"Animal 1", 1);
-                insertObj(name,"Animal 2",1);
-                insertObj(name,"Animal 3", 1);
+                insertObj(name,"Chicken", 1);
+                insertObj(name,"Duck",1);
+                insertObj(name,"Rabbit", 1);
+                insertObj(name,"Dinosaur", 1);
+                insertObj(name,"Cow", 1);
+                insertObj(name,"Goat", 1);
+                insertObj(name,"Sheep", 1);
+                insertObj(name,"Pig", 1);
+                insertObj(name,"Ostrich", 1);
+                insertObj(name,"Cat", 1);
+                insertObj(name,"Dog", 1);
+                insertObj(name,"Horse", 1);
 
-                insertObj(name,"Crop 1", 2);
-                insertObj(name,"Crop 2",2);
-                insertObj(name,"Crop 3", 2);
+                insertObj(name,"BlueJazz", 2);
+                insertObj(name,"Cauliflower",2);
+                insertObj(name,"Coffee Bean", 2);
+                insertObj(name,"Potato", 2);
+                insertObj(name,"Starfruit",2);
+                insertObj(name,"Cranberry", 2);
+                insertObj(name,"Eggplant", 2);
+                insertObj(name,"Pineapple",2);
+                insertObj(name,"Tea Leaf", 2);
 
-                insertObj(name,"Fish 1", 3);
-                insertObj(name,"Fish 2",3);
-                insertObj(name,"Fish 3", 3);
+                insertObj(name,"Pufferfish", 3);
+                insertObj(name,"Smallmouth Bass",3);
+                insertObj(name,"Walleye", 3);
+                insertObj(name,"Lava Eel", 3);
+                insertObj(name,"Midnight Squid",3);
+                insertObj(name,"Blobfish", 3);
             }else{
                 throw new UserAlreadyExistsException();
             }
