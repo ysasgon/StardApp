@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/si_imageView"
+        app:srcCompat="@drawable/banner"
         android:layout_width="379dp"
         android:layout_height="138dp"
         android:layout_marginStart="18dp"
@@ -15,8 +16,7 @@
         android:layout_marginEnd="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/banner" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/si_userLabel"
