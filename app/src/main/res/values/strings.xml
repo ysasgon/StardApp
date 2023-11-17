@@ -1,3 +1,55 @@
 <resources>
+    <!--COMMON STRINGS-->
     <string name="app_name">StardApp</string>
+    <string name="sign_in_button">Sign In</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="missing_fields">All the fields must be filled.</string>
+    <string name="exception">An unexpected error occurred.</string>
+
+    <!--SIGN IN STRINGS-->
+    <string name="sign_in_username_label">User</string>
+    <string name="sign_in_username_textfield">User</string>
+    <string name="sign_in_passwd_label">Password</string>
+    <string name="sign_up_label">Don\'t have an account?</string>
+    <string name="sign_up_link"><u>Register now!</u></string>
+    <string name="sign_up_success">You are now registered.</string>
+    <string name="sign_up_canceled">Sign up canceled.</string>
+    <string name="sign_in_wrong_auth">The credentials are wrong or the user doesn\'t exists.</string>
+
+    <!--SIGN UP STRINGS-->
+    <string name="sign_up_username_label">Username</string>
+    <string name="sign_up_username_textfield">Username</string>
+    <string name="sign_up_passwd_label">Password</string>
+    <string name="sign_up_conf_passwd_label">Rep. Password</string>
+    <string name="sign_up_male">Male</string>
+    <string name="sign_up_female">Female</string>
+    <string name="sign_up_date_button">Date</string>
+    <string name="sign_up_date">yyyy-MM-dd</string>
+    <string name="sign_up_not_matching_passwords">The passwords do not match.</string>
+    <string name="sign_up_gender_missing">You must select a gender.</string>
+    <string name="sign_up_birth_date_missing">You must select your birth date.</string>
+    <string name="sign_up_birth_date_invalid">You must select a valid birth date.</string>
+    <string name="sign_up_user_already_exists">This user already exists.</string>
+
+    <!--PROFILE STRINGS-->
+    <string name="usernameText">Username</string>
+    <string name="genderText">Gender</string>
+    <string name="birthdayText">Birthday</string>
+    <string name="animalText">Animals</string>
+    <string name="cropText">Crops</string>
+    <string name="fishText">Fishes</string>
+    <string name="animalListEmpty">You own no animals</string>
+    <string name="cropListEmpty">You own no crop</string>
+    <string name="fishLisEmpty">You own no fishes</string>
+    <string name="purchaseButton">Purchase</string>
+    <string name="logOutButton">Log Out</string>
+    <string name="purchaseCanceled">Something went wrong with the purchase.</string>
+
+    <!--OBJECTS STRINGS-->
+    <string name="type_animal">Animals:</string>
+    <string name="type_crop">Crops:</string>
+    <string name="type_fish">Fishes:</string>
+    <string name="exit_button">Exit</string>
+    <string name="save_button">Save</string>
 </resources>
