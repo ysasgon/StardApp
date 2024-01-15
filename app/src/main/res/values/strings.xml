@@ -45,6 +45,8 @@
     <string name="purchaseButton">Purchase</string>
     <string name="logOutButton">Log Out</string>
     <string name="purchaseCanceled">Something went wrong with the purchase.</string>
+    <string name="video">Record your farm</string>
+    <string name="cantRecord">This device doesn\'t support recording\, sorry :c</string>
 
     <!--OBJECTS STRINGS-->
     <string name="type_animal">Animals:</string>

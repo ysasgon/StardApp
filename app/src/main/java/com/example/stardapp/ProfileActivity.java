@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -27,12 +28,13 @@ public class ProfileActivity extends AppCompatActivity {
     private static final Integer PURCHASE_ANIMAL=1;
     private static final Integer PURCHASE_CROP=2;
     private static final Integer PURCHASE_FISH=3;
+    public static final Integer RECORD_INTENT = 4;
 
     public static final Integer OBJECT_ACTIVITY = 3;
 
     private TextView usernameTextView, genderTextView, birthdayTextView, animalTextView, cropTextView, fishTextView, usernameText, genderText, birthdayText;
     private ImageView profileIcon, animalImageView, cropImageView, fishImageView;
-    private Button logOutButton, purchaseAnimalButton, purchaseCropButton, purchaseFishButton;
+    private Button logOutButton, purchaseAnimalButton, purchaseCropButton, purchaseFishButton,videoButton;
     private ListView animalListView, cropListView, fishListView;
     private DAO dao;
     private Intent origin;
@@ -47,6 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         dao = new DAO(ProfileActivity.this);
 
+        videoButton = findViewById(R.id.recordButton);
         usernameTextView = (TextView) findViewById(R.id.usernameTextView);
         usernameText = (TextView) findViewById(R.id.usernameText);
         genderTextView = (TextView) findViewById(R.id.genderTextView);
@@ -130,6 +133,19 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        videoButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intentRecord = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                intentRecord.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
+                if (intentRecord.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(intentRecord, RECORD_INTENT);
+                }else{
+                    Toast.makeText(ProfileActivity.this, getString(R.string.purchaseCanceled), Toast.LENGTH_LONG);
+                }
+            }
+        });
         getFieldValues((User) origin.getSerializableExtra("USER"));
     }
 

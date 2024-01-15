@@ -44,4 +44,6 @@
     <string name="type_fish">Pescados:</string>
     <string name="exit_button">Salir</string>
     <string name="save_button">Guardar</string>
+    <string name="video">Graba tu granja</string>
+    <string name="cantRecord">Lo sentimos, su dispositivo no admite grabaciones.</string>
 </resources>
